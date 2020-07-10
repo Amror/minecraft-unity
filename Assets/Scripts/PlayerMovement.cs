@@ -23,6 +23,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.MovePosition(transform.position + (movement * movementSpeed * Time.deltaTime));
+        rb.MovePosition(transform.position + (transform.TransformDirection(movement) * movementSpeed * Time.deltaTime));
     }
 }
