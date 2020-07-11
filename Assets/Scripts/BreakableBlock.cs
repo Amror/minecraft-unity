@@ -16,10 +16,19 @@ public class BreakableBlock : MonoBehaviour
     public void Break() {
         ticksLeft--;
 
-        renderer.material.color = Color.Lerp(Color.red, Color.green, (float)ticksLeft/ticksToBreak);
+        CalcAppearance();
 
         if(ticksLeft <= 0) {
             Destroy(gameObject);
         }
+    }
+
+    public void RevertBreak() {
+        ticksLeft = ticksToBreak;
+        CalcAppearance();
+    }
+
+    private void CalcAppearance() {
+        renderer.material.color = Color.Lerp(Color.red, Color.green, (float)ticksLeft/ticksToBreak);
     }
 }
