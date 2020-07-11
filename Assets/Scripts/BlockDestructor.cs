@@ -4,20 +4,31 @@ using UnityEngine;
 
 public class BlockDestructor : MonoBehaviour
 {
+    public float maxDistance = Mathf.Infinity;
+
+    private BreakableBlock prevBlock = null;
+
     void FixedUpdate()
     {
-        BreakBlock();
+        var brokenBlock = BreakBlock();
+
+        if(brokenBlock != prevBlock) {
+            if(prevBlock)
+                prevBlock.RevertBreak();
+
+            prevBlock = brokenBlock;
+        }
     }
 
-    void BreakBlock() {
-        if(!Input.GetMouseButton(0)) { return; }
+    BreakableBlock BreakBlock() {
+        if(!Input.GetMouseButton(0)) { return null; }
 
         RaycastHit hit;
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if(!Physics.Raycast(ray, out hit)) { return; }
+        if(!Physics.Raycast(ray, out hit, maxDistance, LayerMask.GetMask("Block"))) { return null; }
 
-        if(hit.transform.gameObject.tag != "Block") { return; }
-
-        hit.transform.gameObject.GetComponent<BreakableBlock>().Break();
+        var block = hit.transform.gameObject.GetComponent<BreakableBlock>();
+        block.Break();
+        return block;
     }
 }
