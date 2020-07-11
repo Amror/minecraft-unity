@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 331001709}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Layer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -403,7 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a24ed98008764d44b1af95cca3e9761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 200
+  sensitivity: 350
   player: {fileID: 1751699598}
 --- !u!1 &1751699593
 GameObject:
@@ -420,6 +420,7 @@ GameObject:
   - component: {fileID: 1751699594}
   - component: {fileID: 1751699600}
   - component: {fileID: 1751699599}
+  - component: {fileID: 1751699601}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -544,6 +545,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b460e08b80c7734e9f1b000f5133e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1751699601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751699593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd01f725f31f3924f91c64f5f1ddb5d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  JumpHeight: 300
 --- !u!1 &1969933528
 GameObject:
   m_ObjectHideFlags: 0
