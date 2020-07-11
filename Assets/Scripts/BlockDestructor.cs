@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BlockDestructor : MonoBehaviour
 {
+    public float maxDistance = Mathf.Infinity;
+
     private BreakableBlock prevBlock = null;
 
     void FixedUpdate()
@@ -13,7 +15,7 @@ public class BlockDestructor : MonoBehaviour
         if(brokenBlock != prevBlock) {
             if(prevBlock)
                 prevBlock.RevertBreak();
-                
+
             prevBlock = brokenBlock;
         }
     }
@@ -23,9 +25,7 @@ public class BlockDestructor : MonoBehaviour
 
         RaycastHit hit;
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if(!Physics.Raycast(ray, out hit)) { return null; }
-
-        if(hit.transform.gameObject.tag != "Block") { return null; }
+        if(!Physics.Raycast(ray, out hit, maxDistance, LayerMask.GetMask("Block"))) { return null; }
 
         var block = hit.transform.gameObject.GetComponent<BreakableBlock>();
         block.Break();
